@@ -1,3 +1,4 @@
+
 import static com.github.forax.pro.Pro.*;
 import static com.github.forax.pro.builder.Builders.*;
 
@@ -31,6 +32,6 @@ packager.
         "fr.umlv.javainside.labOne@1.0/fr.umlv.javainside.labOne.Main"
     )   
     
-run(resolver, modulefixer, compiler, tester, docer, packager, runner /*, perfer */)
+run(resolver, modulefixer, compiler, tester, docer, packager, runner , perfer)
 
 /exit
