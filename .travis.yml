@@ -14,3 +14,6 @@ install:
 script:
   - ./pro/bin/pro version
   - ./pro/bin/pro  
+  - cd ../labOne
+  - ./pro/bin/pro version
+  - ./pro/bin/pro
