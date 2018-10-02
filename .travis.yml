@@ -6,14 +6,16 @@ before_install:
   - unset _JAVA_OPTIONS
 
 install:
-  - cd labOne
-  - java pro_wrapper.java version
-  - cd ../lab02
+  - cd lab
   - java pro_wrapper.java version
 
 script:
   - ./pro/bin/pro version
-  - ./pro/bin/pro  
-  - cd ../labOne
-  - ./pro/bin/pro version
   - ./pro/bin/pro
+
+matrix:
+  includes
+    - env
+      lab labOne
+    - env
+      lab lab02
