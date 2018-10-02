@@ -10,7 +10,7 @@ public class Switches {
 			case 2:
 				return "a lot";
 			default:
-				throw new IllegalArgumentException;
+				throw new IllegalArgumentException();
 		}
 	}
 }
