@@ -10,7 +10,7 @@ public class SwitchesTests {
 	
 	@Test
 	void testIntSwitches() {
-		assertEquals(switches.intSwitch(-1), new String());
+		assertEquals(switches.intSwitch(-1), new IllegalArgumentException());
 		assertEquals(switches.intSwitch(0),"one");
 		assertEquals(switches.intSwitch(1),"two");
 		assertEquals(switches.intSwitch(2),"a lot");
