@@ -8,6 +8,8 @@ before_install:
 install:
   - cd labOne
   - java pro_wrapper.java version
+  - cd ../lab02
+  - java pro_wrapper.java version
 
 script:
   - ./pro/bin/pro version
