@@ -1,9 +1,4 @@
-package fr.umlv.javainside.labtwo;
-
-import java.util.function.IntFunction;
-import java.util.stream.Stream;
-
-public class Switches {
+public class ExprSwitches {
 	public static String intSwitch(int value) {
 		switch(value) {
 			case 0: case 3:
@@ -29,7 +24,4 @@ public class Switches {
 				throw new IllegalArgumentException();
 		}
 	}
-	
-	
-	
 }
