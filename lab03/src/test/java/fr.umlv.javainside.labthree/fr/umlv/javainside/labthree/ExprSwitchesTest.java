@@ -9,14 +9,14 @@ import java.util.function.IntFunction;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.params.ParameterizedTest;
-//import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class ExprSwitchesTest {
-	/*static class TestData {
+	static class TestData {
 		int[] i;
 		List<IntFunction> func;
-	}*/
+	}
 	
 	@Test
 	void testIntSwitches() {
@@ -26,14 +26,14 @@ public class ExprSwitchesTest {
 		assertEquals(ExprSwitches.intSwitch(2),"a lot");
 	}
 	
-	/*@ParameterizedTest
+	@ParameterizedTest
 	@MethodSource("stringProvider")
 	void testIntSwitches2(IntFunction<String> func) {
 		assertThrows(IllegalArgumentException.class, () -> func.apply(-1));
 		assertEquals(func.apply(0), "zero");
 		assertEquals(func.apply(1), "one");
 		assertEquals(func.apply(2), "a lot");
-	}*/
+	}
 
 	@Test
 	void testExprIntSwitches() {
@@ -43,9 +43,9 @@ public class ExprSwitchesTest {
 		assertEquals(ExprSwitches.intSwitch(2),"a lot");
 	}
 	
-	/*static Stream<IntFunction<String>> stringProvider() {
-		return Stream.of(Switches::intSwitch, Switches::intSwitch2);
-	}*/
+	static Stream<IntFunction<String>> stringProvider() {
+		return Stream.of(ExprSwitches::intSwitch, ExprSwitches::intSwitch2, ExprSwitches::exprIntSwitch, ExprSwitches::exprIntSwitch2);
+	}
 	
 	/*static Stream<TestData> stringProvider() {
 		int[] tabi = new int[4];
