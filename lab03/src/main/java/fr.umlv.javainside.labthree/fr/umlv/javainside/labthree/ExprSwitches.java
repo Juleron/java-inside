@@ -40,11 +40,11 @@ public class ExprSwitches {
 
 	public static String stringSwitch(String value) {
 		switch(value) {
-			case "foo": case "bar":
+			case "foo": case "viva zorg":
 				return "zero";
-			case "baz":
+			case "bar":
 				return "one";
-			case "viva zorg":
+			case "baz":
 				return "a lot";
 			default:
 				throw new IllegalArgumentException();
@@ -66,7 +66,7 @@ public class ExprSwitches {
 
 	public static String exprIntSwitch(int value) {
 		return switch(value) {
-			case 0,3:
+			case 0, 3:
 				break "zero";
 			case 1:
 				break "one";
@@ -79,36 +79,28 @@ public class ExprSwitches {
 	
 	public static String exprIntSwitch2(int value) {
 		return switch(value) {
-			case 0,3 -> "zero";
+			case 0, 3 -> "zero";
 			case 1 -> "one";
 			case 2 -> "a lot";
 			default -> throw new IllegalArgumentException();
 		};
 	}
 
-	/*public static String exprStringSwitch(String value) {
-		switch(value) {
-			case "foo": case "bar":
-				return "zero";
-			case "baz":
-				return "one";
-			case "viva zorg":
-				return "a lot";
-			default:
-				throw new IllegalArgumentException();
-		}
+	public static String exprStringSwitch(String value) {
+		return switch(value) {
+			case "foo", "viva zorg" -> "zero";
+			case "bar" -> "one";
+			case "baz" -> "a lot";
+			default -> throw new IllegalArgumentException();
+		};
 	}
 
-	public static String exprEnumSwitch(String value) {
-		switch(value) {
-			case Level.DEBUG: case Level.ERROR:
-				return "zero";
-			case Level.WARNING:
-				return "one";
-			case Level.INFO:
-				return "a lot";
-			default:
-				throw new IllegalArgumentException();
-		}
-	}*/
+	public static String exprEnumSwitch(Level value) {
+		return switch(value) {
+			case DEBUG, ERROR -> "zero";
+			case WARNING -> "one";
+			case INFO -> "a lot";
+			default -> throw new IllegalArgumentException();
+		};
+	}
 }
