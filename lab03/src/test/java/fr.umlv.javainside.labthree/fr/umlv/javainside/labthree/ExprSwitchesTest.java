@@ -26,18 +26,26 @@ public class ExprSwitchesTests {
 		assertEquals(Switches.intSwitch(2),"a lot");
 	}
 	
-	@ParameterizedTest
+	/*@ParameterizedTest
 	@MethodSource("stringProvider")
 	void testIntSwitches2(IntFunction<String> func) {
 		assertThrows(IllegalArgumentException.class, () -> func.apply(-1));
 		assertEquals(func.apply(0), "zero");
 		assertEquals(func.apply(1), "one");
 		assertEquals(func.apply(2), "a lot");
+	}*/
+
+	@Test
+	void testExprIntSwitches() {
+		assertThrows(IllegalArgumentException.class, () -> Switches.intSwitch(-1));
+		assertEquals(Switches.intSwitch(0),"zero");
+		assertEquals(Switches.intSwitch(1),"one");
+		assertEquals(Switches.intSwitch(2),"a lot");
 	}
 	
-	static Stream<IntFunction<String>> stringProvider() {
+	/*static Stream<IntFunction<String>> stringProvider() {
 		return Stream.of(Switches::intSwitch, Switches::intSwitch2);
-	}
+	}*/
 	
 	/*static Stream<TestData> stringProvider() {
 		int[] tabi = new int[4];
