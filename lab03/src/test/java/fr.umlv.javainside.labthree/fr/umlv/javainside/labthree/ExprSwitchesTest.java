@@ -1,4 +1,4 @@
-package fr.umlv.javainside.labtwo;
+package fr.umlv.javainside.labthree;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -9,10 +9,10 @@ import java.util.function.IntFunction;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
+//import org.junit.jupiter.params.ParameterizedTest;
+//import org.junit.jupiter.params.provider.MethodSource;
 
-public class ExprSwitchesTests {
+public class ExprSwitchesTest {
 	/*static class TestData {
 		int[] i;
 		List<IntFunction> func;
@@ -20,10 +20,10 @@ public class ExprSwitchesTests {
 	
 	@Test
 	void testIntSwitches() {
-		assertThrows(IllegalArgumentException.class, () -> Switches.intSwitch(-1));
-		assertEquals(Switches.intSwitch(0),"zero");
-		assertEquals(Switches.intSwitch(1),"one");
-		assertEquals(Switches.intSwitch(2),"a lot");
+		assertThrows(IllegalArgumentException.class, () -> ExprSwitches.intSwitch(-1));
+		assertEquals(ExprSwitches.intSwitch(0),"zero");
+		assertEquals(ExprSwitches.intSwitch(1),"one");
+		assertEquals(ExprSwitches.intSwitch(2),"a lot");
 	}
 	
 	/*@ParameterizedTest
@@ -37,10 +37,10 @@ public class ExprSwitchesTests {
 
 	@Test
 	void testExprIntSwitches() {
-		assertThrows(IllegalArgumentException.class, () -> Switches.intSwitch(-1));
-		assertEquals(Switches.intSwitch(0),"zero");
-		assertEquals(Switches.intSwitch(1),"one");
-		assertEquals(Switches.intSwitch(2),"a lot");
+		assertThrows(IllegalArgumentException.class, () -> ExprSwitches.intSwitch(-1));
+		assertEquals(ExprSwitches.intSwitch(0),"zero");
+		assertEquals(ExprSwitches.intSwitch(1),"one");
+		assertEquals(ExprSwitches.intSwitch(2),"a lot");
 	}
 	
 	/*static Stream<IntFunction<String>> stringProvider() {

@@ -1,3 +1,8 @@
+package fr.umlv.javainside.labthree;
+
+import java.util.function.IntFunction;
+import java.util.stream.Stream;
+
 public class ExprSwitches {
 	public static String intSwitch(int value) {
 		switch(value) {
@@ -40,17 +45,10 @@ public class ExprSwitches {
 
 	public static String exprIntSwitch(int value) {
 		return switch(value) {
-			case 0: case 3:
-				"zero";
-				break;
-			case 1:
-				"one";
-				break;
-			case 2:
-				"a lot";
-				break;
-			default:
-				throw new IllegalArgumentException();
+			case 0,3 -> "zero";
+			case 1 -> "one";
+			case 2 -> "a lot";
+			default -> throw new IllegalArgumentException();
 		};
 	}
 	

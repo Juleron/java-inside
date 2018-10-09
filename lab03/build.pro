@@ -21,6 +21,12 @@ resolver.
 //     rawArguments(
 //         "--processor-module-path", "deps"   // enable JMH annotation processor
 //     )
+   compiler.
+       sourceRelease(12).
+        testRelease(12).
+       rawArguments("--enable-preview")
+   runner.
+       rawArguments("--enable-preview")
 
 docer.
     quiet(true).
@@ -31,6 +37,6 @@ packager.
         "fr.umlv.javainside.labthree@1.0/fr.umlv.javainside.labthree.Main"
     )   
     
-run(resolver, modulefixer, compiler, tester, docer, packager, runner /*, perfer */)
+run(resolver, modulefixer, compiler, tester/*, docer*/, packager, runner /*, perfer */)
 
 /exit

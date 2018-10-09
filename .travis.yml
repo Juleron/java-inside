@@ -5,6 +5,9 @@ jdk: openjdk11
 before_install:
   - unset _JAVA_OPTIONS
 
+env:
+  - PRO_SPECIAL_BUILD='early-access-amber'
+
 install:
   - cd $FOLDER
   - java pro_wrapper.java version
@@ -14,7 +17,6 @@ matrix:
    - env: FOLDER=labOne
    - env: FOLDER=lab02
    - env: FOLDER=lab03
-   - env: PRO_SPECIAL_BUILD='early-access-amber'
 
 script:
   - ./pro/bin/pro version
