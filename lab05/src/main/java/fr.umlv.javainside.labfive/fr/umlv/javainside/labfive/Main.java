@@ -4,30 +4,73 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import static java.util.function.Predicate.not;
 
 public class Main {
-	public static String toJSON(Object person) {
-		return Arrays.stream(person.getClass().getMethods())
-				//.filter(method -> not(isObjectGetClass(method)))
-				.filter(method -> method.getName().startsWith("get"))
-				.map(method -> propertyName(method.getName() + " : " + invokeMethod(method, person)))
-				.collect(Collectors.joining("\n", "{\n", "}\n"));
-		/*return
-				"{\n" +
-				"  \"firstName\": \"" + person.getFirstName() + "\"\n" +
-				"  \"lastName\": \"" + person.getLastName() + "\"\n" +
-				"}\n";*/
+	
+	/*static class Person {
+		private final String firstName;
+		private final String lastName;
+
+		public Person(String firstName, String lastName) {
+			this.firstName = Objects.requireNonNull(firstName);
+			this.lastName = Objects.requireNonNull(lastName);
+		}
+
+		@JSONProperty
+		public String getFirstName() {
+			return firstName;
+		}
+		@JSONProperty
+		public String getLastName() {
+			return lastName;
+		}
 	}
 	
-	/*private static boolean isObjectGetClass(Method method) {
-		
-	}*/
+	static class Alien {
+		private final String planet;
+		private final int age;
 
-	private static String invokeMethod(Method method, Object o) {
+		public Alien(String planet, int age) {
+			if (age <= 0) {
+				throw new IllegalArgumentException("Too young...");
+			}
+			this.planet = Objects.requireNonNull(planet);
+			this.age = age;
+		}
+		@JSONProperty
+		public String getPlanet() {
+			return planet;
+		}
+		@JSONProperty
+		public int getAge() {
+			return age;
+		}
+	}*/
+	
+	/*public static String toJSON(Object person) {
+		return Arrays.stream(person.getClass().getMethods())
+				.filter(method -> method.getName().startsWith("get"))
+				.map(method -> propertyName(method.getName() + " : " + invokeMethod(method, person).toString()))
+				.collect(Collectors.joining("\n", "{\n", "}\n"));
+	}*/
+	
+	public static String toJSON(Object person) {
+		return Arrays.stream(person.getClass().getMethods())
+				.filter(method -> method.isAnnotationPresent(JSONProperty.class))
+				.map(method -> "\"" + propertyName(method.getName() + "\": \"" + invokeMethod(method, person).toString()))
+				.collect(Collectors.joining("\"\n", "{\n", "\"\n}"));
+	}
+	
+	private static String propertyName(Method method) {
+		method.getAnnotation(JSONProperty.class);
+	}
+
+	private static Object invokeMethod(Method method, Object o) {
 		try {
-			return method.invoke(o).toString();
+			return method.invoke(o);
 		} catch (IllegalAccessException iae) {
 			throw new IllegalStateException(iae);
 		} catch(InvocationTargetException ite) {
@@ -41,23 +84,15 @@ public class Main {
 			throw new UndeclaredThrowableException(cause);
 		}
 	}
-	
-	/*public static String toJSON(Alien alien) {
-		return 
-				"{\n" + 
-				"  \"planet\": \"" + alien.getPlanet() + "\"\n" + 
-				"  \"members\": \"" + alien.getAge() + "\"\n" + 
-				"}\n";
-	}*/
 
 	private static String propertyName(String name) {
 		return Character.toLowerCase(name.charAt(3)) + name.substring(4);
 	}
 
 	public static void main(String[] args) {
-		var person = new Person("John", "Doe");
+		/*var person = new Person("John", "Doe");
 		System.out.println(toJSON(person));
 		var alien = new Alien("E.T.", 100);
-		System.out.println(toJSON(alien));
+		System.out.println(toJSON(alien));*/
 	}
 }
